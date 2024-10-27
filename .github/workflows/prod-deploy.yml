@@ -1,0 +1,53 @@
+name: Prod-Deploy
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  workflow_dispatch:
+    environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+  #push:
+  #  branches: [ "main" ]
+    # Publish semver tags as releases.
+  #  tags: [ 'v*.*.*' ]
+  #pull_request:
+  #  branches: [ "main" ]
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Deploy-Prod
+        run: |
+          kubectl delete secret docker-registry ghcr-login-secret --ignore-not-found 
+          kubectl create secret docker-registry ghcr-login-secret --docker-server=https://ghcr.io --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ secrets.MY_EMAIL }} --namespace=conjureink-prod-namespace
+          kubectl apply -f kubernetes/conjureink-prod-deployment.yaml

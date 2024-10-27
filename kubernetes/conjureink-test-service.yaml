@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: conjureink-test-service
+  namespace: conjureink-test-namespace
+spec:
+  selector:
+    app: conjureink-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

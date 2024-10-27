@@ -1,0 +1,28 @@
+# ingress ingress-memer.yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app: conjureink-prod
+  name: conjureink-prod
+  namespace: conjureink-prod-namespace
+spec:
+  rules:
+  - host: conjure.ink # Change by your domain
+    http:
+      paths:
+      - backend:
+          service:
+            name: conjureink-deployment
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - conjure.ink # Change by your domain
+    secretName: conjure-ink-com-tls

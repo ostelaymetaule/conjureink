@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conjureink-test-configmap
+  namespace: conjureink-test-namespace
+data:
+  DetailedErrors : "true"
+  Logging__LogLevel__Default : "Information"
+  Logging__LogLevel__Microsoft.AspNetCore : "Warning"

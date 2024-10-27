@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: conjureink-prod-namespace
+  labels:
+    name: conjureink-prod-namespace
