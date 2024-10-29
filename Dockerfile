@@ -2,7 +2,6 @@
 #todo: copy the Memer.Automata.Tg project files for build too?
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
 WORKDIR /app
-RUN dotnet workload install wasm-tools
 EXPOSE 80
 EXPOSE 443
 
@@ -19,5 +18,7 @@ RUN dotnet publish "LandingSite.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+RUN dotnet workload install wasm-tools
 COPY --from=publish /app/publish .
+RUN ls
 ENTRYPOINT ["dotnet", "LandingSite.Web.dll"]
