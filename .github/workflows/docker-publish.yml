@@ -118,9 +118,9 @@ jobs:
         run: |
           kubectl apply -f kubernetes/conjureink-test-namespace.yaml
           kubectl config set-context --current --namespace=conjureink-test-namespace
-          kubectl apply -f conjureink-test-configmap.yaml
+          kubectl apply -f kubernetes/conjureink-test-configmap.yaml
           kubectl delete secret docker-registry ghcr-login-secret --ignore-not-found --namespace=conjureink-test-namespace
           kubectl create secret docker-registry ghcr-login-secret --docker-server=https://ghcr.io --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ secrets.MY_EMAIL }} --namespace=conjureink-test-namespace
           kubectl apply -f kubernetes/conjureink-test-deployment.yaml --namespace=conjureink-test-namespace
-          kubectl expose deployment conjureink-test-deployment  --port 80 --target-port 80
+          kubectl expose deployment kubernetes/conjureink-test-deployment  --port 80 --target-port 80
           kubectl apply -f ingress-memer-test.yaml
