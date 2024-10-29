@@ -1,4 +1,4 @@
-# ingress ingress-memer.yaml
+# ingress conjureink-ingress.yaml
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress

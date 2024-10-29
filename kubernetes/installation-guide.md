@@ -37,7 +37,7 @@ kubectl apply -f conjureink-test-deployment.yaml
 kubectl expose deployment conjureink-deployment  --port 80 --target-port 80
 
 # configure ingress
-kubectl apply -f ingress-conjureink-test.yaml
+kubectl apply -f conjureink-test-ingress.yaml
 
 # dont forget to get the client certificate for ravendb:
 # With security clearance set to Operator, the user of this certificate will have access to all database
