@@ -1,7 +1,8 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 #todo: copy the Memer.Automata.Tg project files for build too?
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
 WORKDIR /app
+RUN dotnet workload install wasm-tools
 EXPOSE 80
 EXPOSE 443
 
