@@ -17,7 +17,6 @@ RUN dotnet publish "LandingSite.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-RUN dotnet workload install wasm-tools
 COPY --from=publish /app/publish .
 RUN ls
 ENTRYPOINT ["./LandingSite.Web"]
