@@ -16,7 +16,7 @@ spec:
       containers:
       - name: conjureink-test
         image: ghcr.io/ostelaymetaule/conjureink:main
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         envFrom:
