@@ -19,7 +19,7 @@ spec:
         image: conjureink:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         envFrom:
         - configMapRef:
             name: conjureink-configmap
