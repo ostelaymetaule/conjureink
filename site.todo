@@ -1,5 +1,8 @@
 make start page:
-    ☐ prepare cicd pipeline with automatic deployment of the docker service @started(24-10-29 20:32)
-    ☐ create a starting dummy docker for testing
-    ☐ create a static website
-    ☐ create a generator of the website
+    ✔ prepare cicd pipeline with automatic deployment of the docker service @started(24-10-29 20:32) @done(24-11-03 00:23) @lasted(4d3h51m54s)
+    ✔ create a starting dummy docker for testing @done(24-11-03 00:23)
+    ✘ create a static website @cancelled(24-11-03 00:23)
+    create a generator of the website:
+        ☐ display images from a folder @started(24-11-03 00:24)
+        ☐ resize images for thumbnails on the fly
+
