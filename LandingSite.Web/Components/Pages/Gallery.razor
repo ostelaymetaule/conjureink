@@ -1,0 +1,58 @@
+﻿@page "/gallery"
+@rendermode InteractiveServer
+<PageTitle>Gallery</PageTitle>
+<h3>Gallery</h3>
+
+<MudGrid Class="object-center">
+    <MudItem xs="12" sm="6" md="6" lg="8" xl="8" xxl="10">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full">
+            <p hidden="@(!ImageHidden)">
+                <MudSkeleton>loading...</MudSkeleton>
+            </p>
+            <p hidden="@(ImageHidden)">
+                <MudImage Src="@SelectedImage" @onload="EndedLoading" Alt="image" Fluid="true" ObjectPosition="ObjectPosition.Center" ObjectFit="ObjectFit.ScaleDown" Class="rounded-lg"></MudImage>
+            </p>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="6" lg="4" xl="4" xxl="2">
+
+        <div class="d-flex flex-wrap justify-center flex-grow-1 gap-4 py-5 align-content-center ">
+            @for (int i = 0; i < Images.Count; i++)
+            {
+                var image = Images[i];
+                <MudPaper Class="flex-initial d-flex py-2" Height="105" Outlined="true" Square="true" Elevation="3">
+
+                    <MudImage Src="@image" Height="100" Alt="image" ObjectPosition="ObjectPosition.RightBottom" ObjectFit="ObjectFit.Contain" Class="rounded-lg" @onclick="@(e => SelectImage(image))"></MudImage>
+                </MudPaper>
+            }
+
+        </div>
+    </MudItem>
+</MudGrid>
+
+
+@code {
+    public List<string> Images { get; set; } = new List<string>();
+    public bool ImageHidden { get; set; } = true;
+
+    public string SelectedImage { get; set; } = "";
+    protected override void OnInitialized()
+    {
+        @* string rootpath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot"); *@
+        string rootpath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "content", "art");
+
+        var currentDir = new DirectoryInfo(rootpath);
+        var dirs = currentDir.GetDirectories();
+        Images = currentDir.GetFiles().Select(img => $"content/art/{img.Name}").ToList();
+        SelectedImage = Images.FirstOrDefault();
+    }
+    public void EndedLoading()
+    {
+        ImageHidden = false;
+    }
+    public void SelectImage(string image)
+    {
+        ImageHidden = true;
+        SelectedImage = image;
+    }
+}

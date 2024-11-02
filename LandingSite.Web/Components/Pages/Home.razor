@@ -1,7 +1,37 @@
 ﻿@page "/"
-
+@rendermode InteractiveServer
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Wilkommen auf Conjure.ink</h1>
 
-Welcome to your new app.
+<MudMainContent >
+    <MudCarousel TData="object" Style="height:900px" >
+       
+            @foreach (var image in Images)
+                    {
+            <MudCarouselItem >
+                <MudPaper >
+                    <MudImage Src="@image"   Elevation="25" Class="rounded-lg" Fluid="true" ObjectFit="ObjectFit.ScaleDown" ObjectPosition="ObjectPosition.Center"></MudImage>
+                </MudPaper>
+                
+            </MudCarouselItem>
+            }
+            
+       
+    </MudCarousel>
+</MudMainContent>
+
+
+@code{
+    public List<string>Images { get; set; }
+    protected override void OnInitialized()
+    {
+        @* string rootpath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot"); *@
+        string rootpath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "content", "art");
+
+        var currentDir = new DirectoryInfo(rootpath);
+        var dirs = currentDir.GetDirectories();
+        Images = currentDir.GetFiles().Select(img => $"content/art/{img.Name}").ToList();
+    }
+
+}
