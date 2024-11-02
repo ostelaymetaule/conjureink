@@ -4,7 +4,7 @@ metadata:
   name: conjureink-test-deployment
   namespace: conjureink-test-namespace
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: conjureink-test
