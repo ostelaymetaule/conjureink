@@ -24,7 +24,7 @@ spec:
             name: conjureink-test-configmap
         volumeMounts:
         - name: content-volume
-          mountPath: /app/content
+          mountPath: /app/wwwroot/content
       imagePullSecrets:
       - name: ghcr-login-secret
       volumes:
