@@ -16,7 +16,7 @@ spec:
       containers:
       - name: conjureink-prod
       # the image is pulled to the local machine by the test pipeline already
-        image: conjureink:latest
+        image: ghcr.io/ostelaymetaule/conjureink:main
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
