@@ -124,3 +124,4 @@ jobs:
           kubectl apply -f kubernetes/conjureink-test-deployment.yaml --namespace=conjureink-test-namespace
           kubectl apply -f kubernetes/conjureink-test-service.yaml --namespace=conjureink-test-namespace
           kubectl apply -f kubernetes/conjureink-test-ingress.yaml --namespace=conjureink-test-namespace
+          kubectl rollout restart deployment conjureink-test-deployment -n conjureink-test-namespace
