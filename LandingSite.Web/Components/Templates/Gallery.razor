@@ -1,9 +1,9 @@
-﻿@page "/gallery"
-@rendermode InteractiveServer
-<PageTitle>Gallery</PageTitle>
-<MudText Typo="Typo.h2">Art20 2024</MudText>
+﻿@rendermode InteractiveServer
+<PageTitle>@TitleText</PageTitle>
+<MudText Typo="Typo.h2">@TitleText</MudText>
 <MudGrid Class="object-center">
-    <MudItem xs="12" sm="6" md="6" lg="8" xl="8" xxl="10">
+    <MudItem xs="12" sm="6" md="6" lg="8" xl="8" xxl="8">
+        <MudText Typo="Typo.overline">@DescriptionText</MudText>
         <MudPaper Class="d-flex align-center justify-center mud-width-full" Elevation="0">
             <p hidden="@(!ImageHidden)">
                 <MudSkeleton>loading...</MudSkeleton>
@@ -13,9 +13,10 @@
             </p>
         </MudPaper>
     </MudItem>
-    <MudItem xs="12" sm="6" md="6" lg="4" xl="4" xxl="2">
+    <MudItem xs="12" sm="6" md="6" lg="4" xl="4" xxl="4">
 
         <div class="d-flex flex-wrap justify-center flex-grow-1 gap-4 py-5 align-content-center ">
+            
             @for (int i = 0; i < Images.Count; i++)
             {
                 var image = Images[i];
@@ -30,20 +31,29 @@
 
 
 @code {
+    [Parameter, EditorRequired]
+    public string TitleText { get; set; }
+    [Parameter, EditorRequired]
+    public string DescriptionText { get; set; }
+    [Parameter, EditorRequired]
+    public string ImagesDirectoryName { get; set; }
+
+
     public List<(string thumb, string mid)> Images { get; set; } = new List<(string thumb, string mid)>();
     public bool ImageHidden { get; set; } = true;
-
     public (string thumb, string mid) SelectedImage { get; set; } = ("", "");
+
+
     protected override void OnInitialized()
     {
         @* string rootpath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot"); *@
-        string rootpath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "content", "art");
+        string rootpath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "content", ImagesDirectoryName);
 
         var currentDir = new DirectoryInfo(rootpath);
         var ip = new Tools.ImageProcessing();
         Images = currentDir.GetFiles()
         .Where(img => !img.Name.StartsWith("thumb_") && !img.Name.StartsWith("mid_"))
-        .Select(img => ip.ResizeAndSave(Path.Combine("content", "art"), img.Name))
+        .Select(img => ip.ResizeAndSave(Path.Combine("content", ImagesDirectoryName), img.Name))
         .ToList();
         SelectedImage = Images.FirstOrDefault();
     }

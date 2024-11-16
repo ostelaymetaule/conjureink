@@ -7,8 +7,20 @@
 <MudLayout>
     <MudAppBar Color="Color.Dark">
         <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
-        <MudIconButton Icon="@Icons.Material.Sharp.BurstMode" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Gallery" />
+        <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" />
+        @* <MudIconButton Icon="@Icons.Material.Sharp.BurstMode" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Art20" />
         <MudIconButton Icon="@Icons.Material.Rounded.PhotoCamera" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Photos" />
+        <MudIconButton Icon="@Icons.Material.Rounded.Window" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Comic101" />
+        <MudIconButton Icon="@Icons.Material.Rounded.WineBar" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Coasters" /> *@
+        
+            @foreach (var page in Pages)
+            {
+            string iconName = page.Item1;
+            string href = page.Item2;
+            <MudIconButton Icon="@iconName" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="@href" />
+            }
+         
+        <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" />
         <MudIconButton Icon="@Icons.Material.Sharp.ContactMail" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/About" />
         <MudSpacer></MudSpacer>
         <MudText Typo="Typo.h4">conjure.ink</MudText>
@@ -20,3 +32,25 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
+
+@code{
+
+    (string, string)[] Pages = new[] {
+        (Icons.Material.Sharp.BurstMode,"/Art20"),
+        (Icons.Material.Outlined.DirtyLens,"/Abstract"),
+        (Icons.Material.Outlined.DirectionsWalk,"/Akt"),
+        (Icons.Material.Outlined.Woman,"/Bon"),
+        (Icons.Material.Outlined.Pets,"/Cats"),
+        (Icons.Material.Rounded.PhotoCamera,"/Photos"),
+        (Icons.Material.Rounded.Window,"/Comic101"),
+        (Icons.Material.Rounded.WineBar,"/Coasters"),
+        (Icons.Material.Outlined.ColorLens,"/Colors"),
+        (Icons.Material.Outlined.Coffee,"/Cups"),
+        (Icons.Custom.Uncategorized.ChessKnight,"/D"),
+        (Icons.Custom.Uncategorized.Fish,"/Fish"),
+        (Icons.Material.Outlined.Castle,"/Dnd"),
+        (Icons.Material.Outlined.NoteAlt,"/Ink"),
+        (Icons.Material.Outlined.FormatPaint,"/Items")
+
+        };
+}
