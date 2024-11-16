@@ -54,6 +54,7 @@
         Images = currentDir.GetFiles()
         .Where(img => !img.Name.StartsWith("thumb_") && !img.Name.StartsWith("mid_"))
         .Select(img => ip.ResizeAndSave(Path.Combine("content", ImagesDirectoryName), img.Name))
+        .OrderBy(img => img.mid)
         .ToList();
         SelectedImage = Images.FirstOrDefault();
     }
