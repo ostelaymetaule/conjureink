@@ -20,14 +20,14 @@
         <MudText Typo="Typo.h4">conjure.ink</MudText>
     </MudNavMenu>
     <MudMainContent Class="d-none d-sm-flex ">
-        <MudContainer Class="pa-20 ma-10" MaxWidth="MaxWidth.ExtraLarge">
+        <MudContainer  MaxWidth="MaxWidth.ExtraLarge">
             @Body
         </MudContainer>
     </MudMainContent>
 
     <MudGrid Class="d-flex d-sm-none">
         <MudItem xs="1">
-            <MudPaper Class="pa-20 ma-0" Elevation="0">
+            <MudPaper Class="pa-4 ma-2" Elevation="0">
                 <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
                 <MudIconButton Icon="@Icons.Material.Sharp.ContactMail" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/About" />
                 <MudDivider  Class="pa-4 ma-0" DividerType="DividerType.Inset" />
@@ -40,7 +40,7 @@
             </MudPaper>
         </MudItem>
         <MudItem xs="11">
-            <MudMainContent>
+            <MudMainContent Class="pa-20 ma-10">
                 <MudContainer MaxWidth="MaxWidth.ExtraLarge">
                     @Body
                 </MudContainer>
