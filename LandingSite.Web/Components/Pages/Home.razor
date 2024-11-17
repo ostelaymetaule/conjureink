@@ -1,14 +1,14 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 <PageTitle>Conjure.ink - start page</PageTitle>
-<MudText Typo="Typo.h1">Welcome to conjure.ink</MudText>
-<MudText Typo="Typo.h2">The very best art of magical chromophore coating on stuff and things!</MudText>
-
+<MudText Typo="Typo.h1" Class="d-sm-none d-md-flex">Welcome to conjure.ink</MudText>
+<MudText Typo="Typo.h2" Class="d-sm-none d-md-flex">The very best art of magical chromophore coating on stuff and things!</MudText>
+<MudText Typo="Typo.h4" Class="pa-20 ma-1 d-xs-flex d-sm-flex d-md-none d-lg-none d-xl-none d-xxl-none">Welcome to the conjure.ink, the very best art of magical chromophore coating on stuff and things!</MudText>
 <MudMainContent>
     <MudGrid Class="object-center">
         <MudItem xs="1" sm="2" md="2" lg="2" xl="2" xxl="2"></MudItem>
         <MudItem xs="12" sm="8" md="8" lg="8" xl="8" xxl="8">
-            <MudCarousel TData="object" Style="height:500px" Class="mud-width-full">
+            <MudCarousel ShowArrows="false" ShowBullets="false" TData="object" Style="height:500px" Class="mud-width-full" >
                 <PreviousButtonTemplate>
                     <div Class="mud-button-root mud-icon-button mud-icon-button-color-inherit mud-ripple mud-ripple-icon">
                         <span class="mud-icon-button-label">
@@ -28,8 +28,8 @@
                     {
                         <MudCarouselItem>
                             <div class="d-flex" style="height:100%">
-                                <MudPaper>
-                                    <MudImage Src="@image" Elevation="5" Class="rounded-lg" Fluid="true" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center"></MudImage>
+                                <MudPaper Elevation="0">
+                                    <MudImage Src="@image" Elevation="0" Class="rounded-lg" Fluid="true" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center"></MudImage>
                                 </MudPaper>
                             </div>
                         </MudCarouselItem>

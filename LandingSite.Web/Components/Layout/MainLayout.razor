@@ -5,35 +5,54 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Color="Color.Dark">
+    <MudAppBar Color="Color.Dark" Class="d-sm-none d-md-flex">
         <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" />
-        @* <MudIconButton Icon="@Icons.Material.Sharp.BurstMode" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Art20" />
-        <MudIconButton Icon="@Icons.Material.Rounded.PhotoCamera" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Photos" />
-        <MudIconButton Icon="@Icons.Material.Rounded.Window" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Comic101" />
-        <MudIconButton Icon="@Icons.Material.Rounded.WineBar" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/Coasters" /> *@
-        
-            @foreach (var page in Pages)
-            {
+        @foreach (var page in Pages)
+        {
             string iconName = page.Item1;
             string href = page.Item2;
             <MudIconButton Icon="@iconName" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="@href" />
-            }
-         
+        }
         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" />
         <MudIconButton Icon="@Icons.Material.Sharp.ContactMail" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/About" />
         <MudSpacer></MudSpacer>
         <MudText Typo="Typo.h4">conjure.ink</MudText>
     </MudAppBar>
-
-    <MudMainContent>
+    <MudMainContent Class="d-sm-none d-md-flex">
         <MudContainer MaxWidth="MaxWidth.ExtraLarge">
             @Body
         </MudContainer>
     </MudMainContent>
+
+    <MudGrid Class="d-xs-flex d-sm-flex d-md-none d-lg-none d-xl-none d-xxl-none">
+        <MudItem xs="1">
+            <MudPaper Class="pa-20 ma-0" Elevation="0">
+                <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
+                <MudIconButton Icon="@Icons.Material.Sharp.ContactMail" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/About" />
+                <MudDivider  Class="pa-4 ma-0" DividerType="DividerType.Inset" />
+                @foreach (var page in Pages)
+                {
+                    string iconName = page.Item1;
+                    string href = page.Item2;
+                    <MudIconButton Icon="@iconName" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="@href" />
+                }
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="11">
+            <MudMainContent>
+                <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+                    @Body
+                </MudContainer>
+            </MudMainContent>
+        </MudItem>
+    </MudGrid>
+
+
+
 </MudLayout>
 
-@code{
+@code {
 
     (string, string)[] Pages = new[] {
         (Icons.Material.Sharp.BurstMode,"/Art20"),
