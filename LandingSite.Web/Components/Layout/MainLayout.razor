@@ -5,7 +5,7 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Color="Color.Dark" Class="d-xs-none d-sm-none d-md-flex">
+    <MudNavMenu Color="Color.Dark" Class="d-none d-sm-flex">
         <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" />
         @foreach (var page in Pages)
@@ -18,14 +18,14 @@
         <MudIconButton Icon="@Icons.Material.Sharp.ContactMail" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/About" />
         <MudSpacer></MudSpacer>
         <MudText Typo="Typo.h4">conjure.ink</MudText>
-    </MudAppBar>
-    <MudMainContent Class="d-xs-none d-sm-none d-md-flex">
+    </MudNavMenu>
+    <MudMainContent Class="d-none d-sm-flex">
         <MudContainer MaxWidth="MaxWidth.ExtraLarge">
             @Body
         </MudContainer>
     </MudMainContent>
 
-    <MudGrid Class="d-xs-flex d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
+    <MudGrid Class="d-flex d-sm-none">
         <MudItem xs="1">
             <MudPaper Class="pa-20 ma-0" Elevation="0">
                 <MudIconButton Icon="@Icons.Material.Outlined.Home" Color="Color.Inherit" Edge="Edge.Start" Size="@Size.Large" Href="/" />
