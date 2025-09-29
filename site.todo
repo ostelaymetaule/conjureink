@@ -3,6 +3,14 @@ make start page:
     ✔ create a starting dummy docker for testing @done(24-11-03 00:23)
     ✘ create a static website @cancelled(24-11-03 00:23)
     create a generator of the website:
-        ☐ display images from a folder @started(24-11-03 00:24)
-        ☐ resize images for thumbnails on the fly
+        ✔ display images from a folder @done(17-11-03 00:23)
+        ✔ resize images for thumbnails on the fly @done(17-11-03 00:23)
+        add an upload admin page:
+            edit existing folders:
+                ☐ delete a folder and all its content
+                ☐ rename a folder
+                ☐ set an icon for a folder
+                ☐ create a new folder on the disk
+            ☐ upload images to a selected folder
+            ☐ delete images from a selected folder
 
